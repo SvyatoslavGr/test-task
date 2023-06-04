@@ -3,10 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import SearchInput from './SearchInput';
 import RepositoryList from './RepositoryList';
 import Paginator from './Paginator';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 function MainPage() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [value, setValue] = useState('');
+  const page = useSelector((state: RootState) => state.RepositoriesReducer.currentPage);
+  const query = useSelector((state: RootState) => state.RepositoriesReducer.searchQuery);
+  const [currentPage, setCurrentPage] = useState(page);
+  const [value, setValue] = useState(query);
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (

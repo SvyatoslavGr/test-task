@@ -8,6 +8,8 @@ const initialState: RepositoriesState = {
   searchedRepositoriesByPages: [],
   loading: false,
   isSearched: false,
+  currentPage: 1,
+  searchQuery: '',
 };
 
 const RepositoriesReducer = (state = initialState, action: RepositoriesAction): RepositoriesState => {
@@ -18,6 +20,12 @@ const RepositoriesReducer = (state = initialState, action: RepositoriesAction): 
 
     case RepositoriesActionTypes.CLEAR_SEARCHED:
       return { ...state, isSearched: false }
+
+    case RepositoriesActionTypes.SET_PAGE:
+      return { ...state, currentPage: action.payload }
+
+    case RepositoriesActionTypes.SET_QUERY:
+      return { ...state, searchQuery: action.payload }
 
     case RepositoriesActionTypes.SET_USER_REPOSITORIES:
       return { ...state, loading: false, userRepositories: action.payload, userRepositoriesByPages: devideIntoChunks(action.payload, 10) };

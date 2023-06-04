@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { Repository } from '../types/repositories';
+import { RepositoriesActionTypes, Repository } from '../types/repositories';
 import { SetURLSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -20,6 +21,8 @@ function Paginator({ currentPage, setCurrentPage, setSearchParams, searchValue }
   const isLoading = useSelector(((state: RootState) => state.RepositoriesReducer.loading));
   const isSearched = useSelector(((state: RootState) => state.RepositoriesReducer.isSearched));
   const repositories = isSearched ? searchedRepositories : userRepositories;
+
+  const dispatch = useDispatch();
   
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement>, pageNumber: number) => {
     // if (!(e.target instanceof HTMLButtonElement)) {
@@ -28,6 +31,7 @@ function Paginator({ currentPage, setCurrentPage, setSearchParams, searchValue }
     // const buttonElem = e.target;
     
     setCurrentPage(pageNumber);
+    dispatch({type: RepositoriesActionTypes.SET_PAGE, payload: pageNumber});
     // setSearchParams({'page': pageNumber.toString()});
   }
   if (isLoading) {

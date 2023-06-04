@@ -3,6 +3,8 @@ export enum RepositoriesActionTypes {
   SET_USER_REPOSITORIES = "SET_USER_REPOSITORIES",
   SET_SEARCHED_REPOSITORIES = "SET_SEARCHED_REPOSITORIES",
   CLEAR_SEARCHED = "UNSET_SEARCHED",
+  SET_PAGE = "SET_PAGE",
+  SET_QUERY = "SET_QUERY",
 }
 
 interface FetchingRepositoriesAction {
@@ -23,7 +25,17 @@ interface ClearSearchedAction {
   type: RepositoriesActionTypes.CLEAR_SEARCHED;
 }
 
-export type RepositoriesAction = FetchingRepositoriesAction | SetUserRepositories | SetSearchedRepositories | ClearSearchedAction
+export interface SetPage {
+  type: RepositoriesActionTypes.SET_PAGE;
+  payload: number;
+}
+
+export interface SetQuery {
+  type: RepositoriesActionTypes.SET_QUERY;
+  payload: string;
+}
+
+export type RepositoriesAction = FetchingRepositoriesAction | SetUserRepositories | SetSearchedRepositories | ClearSearchedAction | SetPage | SetQuery
 
 export interface RepositoriesState {
   userRepositories: Repository[];
@@ -32,6 +44,8 @@ export interface RepositoriesState {
   searchedRepositoriesByPages: Repository[][];
   loading: boolean;
   isSearched: boolean;
+  currentPage: number;
+  searchQuery: string;
 }
 
 export interface UserRepositoriesResponse {

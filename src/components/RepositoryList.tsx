@@ -14,16 +14,18 @@ function RepositoryList({ currentPage, searchValue }: RepositoryListProps) {
   const userRepositories = useSelector((state: RootState) => state.RepositoriesReducer.userRepositoriesByPages);
   const searchedRepositories = useSelector((state: RootState) => state.RepositoriesReducer.searchedRepositoriesByPages);
   const isLoading = useSelector(((state: RootState) => state.RepositoriesReducer.loading));
+  const page = useSelector(((state: RootState) => state.RepositoriesReducer.currentPage));
   const isSearched = useSelector(((state: RootState) => state.RepositoriesReducer.isSearched));
   const repositories = isSearched ? searchedRepositories : userRepositories;
-
+  console.log(page);
+  
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <div>
-      {repositories.length ? repositories[currentPage - 1].map((el: Repository) => (
+      {repositories.length ? repositories[page - 1].map((el: Repository) => (
         <div
           key={el.id}
           className='item'

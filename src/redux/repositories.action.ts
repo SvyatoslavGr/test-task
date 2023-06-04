@@ -32,8 +32,10 @@ export const setUserRepositoriesAction = () => async (dispatch: Dispatch<Reposit
 
 export const setSearchedRepositoriesAction = (searchValue: string) => async (dispatch: Dispatch<RepositoriesAction>) => {
   try {
+    dispatch({type: RepositoriesActionTypes.SET_QUERY, payload: searchValue});
     if (!searchValue) {
       dispatch({ type: RepositoriesActionTypes.CLEAR_SEARCHED })
+      dispatch({type: RepositoriesActionTypes.SET_PAGE, payload: 1});
       return;
     }
     console.log('dispatch occured');

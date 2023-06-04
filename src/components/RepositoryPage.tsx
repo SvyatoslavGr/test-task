@@ -37,7 +37,7 @@ function RepositoryPage() {
               src={repository.owner.avatarUrl}
               alt='owner`s avatar'
             />
-            {repository.languages.edges.length && 
+            {Boolean(repository.languages.edges.length) && 
               <div>
                 <h3>Languages</h3>
                 <ul>
