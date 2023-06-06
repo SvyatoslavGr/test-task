@@ -9,6 +9,7 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   plugins: ['react-refresh', 'react'],
   rules: {
+    "semi": ["error", "always"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     'react-refresh/only-export-components': 'warn',
     'react/self-closing-comp': [
@@ -30,6 +31,7 @@ module.exports = {
       "nonEmpty": "line-aligned",
       "selfClosing": "line-aligned"
     }],
-    "react/jsx-closing-bracket-location": ["error", { "selfClosing": "line-aligned", "nonEmpty": "line-aligned" }]
+    "react/jsx-closing-bracket-location": ["error", { "selfClosing": "line-aligned", "nonEmpty": "line-aligned" }],
+    "jsx-quotes": ["error", "prefer-double"]
   },
-}
+};

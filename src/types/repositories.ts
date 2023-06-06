@@ -1,5 +1,6 @@
 export enum RepositoriesActionTypes {
   FETCHING_REPOSITORIES = "FETCHING_REPOSITORIES",
+  FETCHING_REPOSITORIES_ERROR = "FETCHING_REPOSITORIES_ERROR",
   SET_USER_REPOSITORIES = "SET_USER_REPOSITORIES",
   SET_SEARCHED_REPOSITORIES = "SET_SEARCHED_REPOSITORIES",
   CLEAR_SEARCHED = "UNSET_SEARCHED",
@@ -9,6 +10,10 @@ export enum RepositoriesActionTypes {
 
 interface FetchingRepositoriesAction {
   type: RepositoriesActionTypes.FETCHING_REPOSITORIES;
+}
+
+interface FetchingRepositoriesErrorAction {
+  type: RepositoriesActionTypes.FETCHING_REPOSITORIES_ERROR;
 }
 
 export interface SetUserRepositories {
@@ -35,7 +40,7 @@ export interface SetQuery {
   payload: string;
 }
 
-export type RepositoriesAction = FetchingRepositoriesAction | SetUserRepositories | SetSearchedRepositories | ClearSearchedAction | SetPage | SetQuery
+export type RepositoriesAction = FetchingRepositoriesAction | FetchingRepositoriesErrorAction | SetUserRepositories | SetSearchedRepositories | ClearSearchedAction | SetPage | SetQuery
 
 export interface RepositoriesState {
   userRepositories: Repository[];
@@ -107,4 +112,5 @@ export interface Language {
 export interface Owner {
   login:     string;
   avatarUrl: string;
+  url:       string;
 }

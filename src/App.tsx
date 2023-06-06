@@ -1,39 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import './App.css'
-import SearchInput from './components/SearchInput'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react';
+import './App.css';
+import { useDispatch } from 'react-redux';
 import { setUserRepositoriesAction } from './redux/repositories.action';
 import type {} from 'redux-thunk/extend-redux';
-import RepositoryList from './components/RepositoryList';
-import Paginator from './components/Paginator';
-import { Route, Routes, useSearchParams } from 'react-router-dom';
-import MainPage from './components/MainPage';
-import PageNotFound from './components/PageNotFound';
-import RepositoryPage from './components/RepositoryPage';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage/MainPage';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import RepositoryPage from './components/RepositoryPage/RepositoryPage';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 function App() {
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [value, setValue] = useState('');
-  // const [searchParams, setSearchParams] = useSearchParams();
-
+  const userRepositories = useSelector((state: RootState) => state.RepositoriesReducer.userRepositoriesByPages);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(setUserRepositoriesAction());
-  
-    // return () => {
-    //   second
-    // }
+    if (!userRepositories.length) {
+      dispatch(setUserRepositoriesAction());
+    }
   }, []);
   
-
   return (
     <Routes>
       <Route
-        path='/'
+        path="/"
         element={<MainPage />}
       />
       <Route
-        path='/repositories/:repositoryId'
+        path="/repositories/:repositoryId"
         element={<RepositoryPage />}
       />
       <Route
@@ -41,7 +35,7 @@ function App() {
         element={<PageNotFound />}
       />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

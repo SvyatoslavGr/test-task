@@ -1,0 +1,39 @@
+.repository-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  border-radius: 20px;
+  background-color: lightblue;
+  max-width: 600px;
+}
+
+.repository-card-title {
+  margin-top: 0;
+}
+
+.repository-card-description {
+  text-align: center;
+}
+
+.repository-languages-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.repository-languages-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.repository-languages-item {
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 20px;
+}

@@ -16,22 +16,25 @@ const RepositoriesReducer = (state = initialState, action: RepositoriesAction): 
 
   switch (action.type) {
     case RepositoriesActionTypes.FETCHING_REPOSITORIES:
-      return { ...state, loading: true }
+      return { ...state, loading: true };
+
+    case RepositoriesActionTypes.FETCHING_REPOSITORIES_ERROR:
+      return { ...state, loading: false };
 
     case RepositoriesActionTypes.CLEAR_SEARCHED:
-      return { ...state, isSearched: false }
+      return { ...state, isSearched: false };
 
     case RepositoriesActionTypes.SET_PAGE:
-      return { ...state, currentPage: action.payload }
+      return { ...state, currentPage: action.payload };
 
     case RepositoriesActionTypes.SET_QUERY:
-      return { ...state, searchQuery: action.payload }
+      return { ...state, searchQuery: action.payload };
 
     case RepositoriesActionTypes.SET_USER_REPOSITORIES:
       return { ...state, loading: false, userRepositories: action.payload, userRepositoriesByPages: devideIntoChunks(action.payload, 10) };
 
     case RepositoriesActionTypes.SET_SEARCHED_REPOSITORIES:
-      return { ...state, loading: false, isSearched: true, searchedRepositories: action.payload, searchedRepositoriesByPages: devideIntoChunks(action.payload, 10) };
+      return { ...state, loading: false, isSearched: true, currentPage: 1, searchedRepositories: action.payload, searchedRepositoriesByPages: devideIntoChunks(action.payload, 10) };
 
     default:
       return state;

@@ -1,6 +1,6 @@
 export const USER_REPOSITORIES_QUERY = `query { 
   viewer { 
-    repositories(first: 100 orderBy: {field: UPDATED_AT, direction: DESC} ) {
+    repositories(affiliations: OWNER isFork: false first: 100 orderBy: {field: UPDATED_AT, direction: DESC} ) {
       edges {
         node {
           id
@@ -18,6 +18,7 @@ export const USER_REPOSITORIES_QUERY = `query {
           }
           owner {
             login
+            url
             avatarUrl
           }
           
@@ -47,10 +48,11 @@ export const SEARCHED_REPOSITORIES_QUERY = `query($queryString: String!) {
           }
           owner {
             login
+            url
             avatarUrl
           }
         }
       }
     }
   }
-}`
+}`;

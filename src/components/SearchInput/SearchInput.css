@@ -1,0 +1,14 @@
+.search-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 50px;
+}
+
+.search-label {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  border-radius: 5px;
+}

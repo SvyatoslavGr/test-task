@@ -9,18 +9,19 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 
 const persistConfig = {
   key: 'root',
   storage,
-}
+  blacklist: ['userRepositories', 'userRepositoriesByPages']
+};
 
 const rootReducer = combineReducers({ RepositoriesReducer });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -33,5 +34,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-export type RootState = ReturnType<typeof store.getState>
-// export default store;
+export type RootState = ReturnType<typeof store.getState>;

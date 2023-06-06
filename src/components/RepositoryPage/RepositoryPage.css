@@ -1,0 +1,12 @@
+.repository-page {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  align-items: center;
+}
+
+.btn-back {
+  display: flex;
+  width: auto;
+  margin-bottom: 30px;
+}
